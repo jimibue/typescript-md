@@ -1,73 +1,11 @@
 # TYPESCRIPT
 > about typescript
 
+```
 yarn global add typescript
-or
-yarn add typescript --dev
-
-
-
-
-
-## [](#dependencies)Dependencies
-
-First, you need TypeScript installed of course. You can decide to have it installed globally on your machine, or locally to your project.
-
-To install globally, run:
-
-    $ npm i typescript -g
-
-    # or, using Yarn:
-    $ yarn global add typescript
-
-And to install locally, run:
-
-    $ npm i typescript --save-dev
-
-    # or, using Yarn:
-    $ yarn add typescript --dev
-
-## [](#setup)Setup
-
-TypeScript comes with two binaries: _tsc_ and _tsserver_. **tsc** is the TypeScript compiler and has a command line interface with [plenty of available options](https://www.typescriptlang.org/docs/handbook/compiler-options.html). To initialize a TypeScript project, simply use the `--init` flag:
-
-    $ tsc --init
-
-* * *
-
-If you’re using a version of TypeScript installed locally, you’ll instead want to ensure that you’re running the local version by calling **tsc** from the local _node_modules_ folder:
-
-    $ ./node_modules/.bin/tsc --init
-
-Or, even better, simply [using npx](/workflow/npx/) to ensure that the local version of tsc is used:
-
-    $ npx tsc --init
-
-* * *
-
-After running **tsc** with the `--init` flag, a `tsconfig.json` will be added to your project folder with a few sensible defaults and an extensive list of commented-out possible configurations. Here are the starting configurations:
-
-    {
-      "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "strict": true
-      }
-    }
-
-Let’s add just two more options to that base configuration:
-
-    {
-      "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "strict": true,
-        "outDir": "dist",
-        "sourceMap": true
-      }
-    }
-
-With this, the JavaScript files that the TypeScript compiler outputs will be in a _dist_ folder and sourcemaps will be generated.
+git clone git@github.com:jimibue/typescript-md.git
+cd typescript-md
+```
 
 ## [](#compiling)Compiling
 
@@ -75,7 +13,7 @@ With the `tsconfig.json` in place, we can start coding our app in TypeScript.
 
 Let’s create an `index.ts` file in a _src_ folder with this content:
 
-    const world = '🗺️';
+    const world = 'yo';
 
     export function hello(word: string = world): string {
       return `Hello ${world}! `;
@@ -105,8 +43,6 @@ And bam, our JavaScript and sourcemap files are created! Here’s the content of
 ### Watch mode
 
 Instead of running the TypeScript compiler every time you make a change, you can start the compiler in watch mode instead so that it recompiles every time there are changes to the TypeScript files:
-
-    $ tsc -w
 
     # or, for local tsc:
     $ npx tsc -w
@@ -142,36 +78,39 @@ _Let’s dive into each of those a bit more and how to use Typescript types._
 #### Assigning types
 
 To assign a type in Typescript, you need a colon `:`, the name of the type, an equal sign `=`, and the value of that variable. Let’s look at an example.
-
+```javascript
     let variableName: typeScriptType = value;  
-
+```
 #### Number
 
 Typescript supports decimal, hexadecimal, octal, and binary literal. In Typescript, all numbers are floating-point values.
 
-    let num: number = 0.444;let hex: number = 0xbeef;let bin: number = 0b0010;
-
+```javascript
+    let num: number = 0.444;
+    let hex: number = 0xbeef;
+    let bin: number = 0b0010;
+```
 #### Boolean
 
 Boolean values function just like they do in Javascript.
-
+```javascript
     let yes: boolean = true;
     let no: boolean = false;
-
+```
 #### Array
 
 In Typescript, arrays are a collection of the same object. You can declare a typed array in two ways, either with the datatype followed by [ ], or the generic array approach with `Array<elemType>`.
 
 You can also assign multiple types to one array using the `|` operator or create a multidimensional array to save one array into another array using the `[ ]` operator.
-
+```javascript
     const arr3: (Date| string[])[] = [new Date(), new Date(), ["1", "a"]];
-
+```
 #### Tuple
 
 Tuples are a lot like arrays, but we can define the type of data that are stored in each position. Tuple types enable you to make organized arrays. You can express an array when you know the type of a fixed number of elements and predefine your types in order.
-
+```javascript
     let numberTuple: [number, number, number];
-
+```
 #### Void
 
 Void is a subtype of `undefined`. It is a return type that can be substituted with different types when needed. Void is used when we are returning functions. It essentially tells us that a function will return undefined. This ensures that a function does not return a value.
@@ -179,16 +118,18 @@ Void is a subtype of `undefined`. It is a return type that can be substituted wi
 #### Enum
 
 Enums allow us to define a set of named predefined constants. These are defined with the enum keyword. You can define a numeric or a string enum.
-
+```javascript
     enum MyStringEnum {  ChoiceA = "A",  ChoiceB = "B",}
     enum MyNumEnum {  ChoiceA,  ChoiceB ,}
-
+```
 #### String
 
 Typescript follows the same syntax of Javascript with double or single quotes around text. You can also use the backtick character to use multiple lines or the `${expression}` to enable evaluated operations inside a string.
-
-    let w = "Value1";let x = "this is a string with the value " + w;let y = 'this is a string with the value ' + w;let z = `this is a string ${w}`;console.log(w,x,y,z)
-
+```javascript
+    let w = "Value1";
+    let x = "this is a string with the value " + w;let y = 'this is a string with the value ' + w;
+    let z = `this is a string ${w}`;console.log(w,x,y,z)
+```
 ###  Exploring TypeScript: Interfaces
 One of TypeScript’s core principles is that type checking focuses on the shape that values have. This is sometimes called “duck typing” or “structural subtyping”. In TypeScript, interfaces fill the role of naming these types, and are a powerful way of defining contracts within your code as well as contracts with code outside of your project.
 
